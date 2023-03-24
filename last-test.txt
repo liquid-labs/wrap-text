@@ -1,68 +1,15 @@
+PASS test-staging/test/get-effective-width.test.js
 PASS test-staging/test/wrap.test.js
-  wrap
-    basic wrapping
-      ✓ Wrapping '123 56 89' width: 5 yields '123
-56 89' (2 ms)
-      ✓ Wrapping '123 56 89' width: 6 yields '123 56
-89'
-      ✓ Wrapping '123 56 89' width: 7 yields '123 56
-89'
-      ✓ Wrapping '123 56 89' width: 9 yields '123 56 89'
-      ✓ Wrapping '123-56 89' width: 5 yields '123-
-56 89'
-      ✓ Wrapping '123-56 89' width: 6 yields '123-56
-89'
-      ✓ Wrapping '123-56 89' width: 7 yields '123-56
-89'
-      ✓ Wrapping '123-56 89' width: 9 yields '123-56 89' (1 ms)
-      ✓ Respect initial indent; ' 123 56 89' width: 5 yields ' 123
-56 89'
-      ✓ Respect initial indent; '  123 56 89' width: 5 yields '  123
-56 89'
-      ✓ Respect initial indent; '   123 56 89' width: 5 yields '   12
-3 56
-89'
-    ignore tags wrap
-      ✓ Wrapping '1<foo>23 56 89' width: 5, ind: 0 yields '1<foo>23
-56 89' (1 ms)
-      ✓ Wrapping '123 <foo>56 89' width: 5, ind: 0 yields '123
-<foo>56 89'
-      ✓ Wrapping '123 <foo>56 89' width: 4, ind: 0 yields '123
-<foo>56
-89'
-      ✓ Wrapping '123 <foo>56 89' width: 4, ind: 1 yields ' 123
- <foo>56
- 89'
-    constant indents
-      ✓ Wrapping '123 56 89' width: 5, ind: 1 yields ' 123
- 56
- 89'
-      ✓ Wrapping '123-56 89' width: 5, ind: 1 yields ' 123-
- 56
- 89'
-      ✓ Wrapping '123-56 89' width: 5, ind: 2 yields '  123
-  -56
-  89'
-    smart indenting
-      ✓ Wrapping '123 56 89' width: 5, ind: 123 yields '%s'
-      ✓ Wrapping '123 <foo>56 89' width: 5, ind: 123 yields '%s'
-      ✓ Wrapping '- 1
-- <foo>23 56 89' width: 5, ind: NaN yields '%s'
-      ✓ Wrapping '123
-- <foo>56 89' width: 4, ind: 123 yields '%s'
-      ✓ Wrapping '123
-- <foo>abcd efg
-  - a longer line' width: 8, ind: 123 yields '%s' (1 ms)
-
 -------------------------|---------|----------|---------|---------|-------------------
 File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -------------------------|---------|----------|---------|---------|-------------------
-All files                |   89.42 |    74.39 |     100 |   88.76 |                   
- get-effective-width.mjs |   81.25 |    76.92 |     100 |   77.77 | 23-25,38-40       
+All files                |   89.62 |    75.58 |     100 |   88.76 |                   
+ get-effective-width.mjs |   82.35 |    82.35 |     100 |   77.77 | 23-25,38-40       
  wrap.mjs                |   93.05 |    73.91 |     100 |   93.54 | 12,25-26,98       
 -------------------------|---------|----------|---------|---------|-------------------
-Test Suites: 1 passed, 1 total
-Tests:       23 passed, 23 total
+
+Test Suites: 2 passed, 2 total
+Tests:       34 passed, 34 total
 Snapshots:   0 total
-Time:        0.374 s, estimated 1 s
+Time:        0.256 s, estimated 1 s
 Ran all test suites matching /.\/test-staging/i.

@@ -2,7 +2,7 @@ const tagBreakers = ['<', ' ', '\n']
 /**
 * Determines the effective considering any indent and invisible tags.
 */
-const getEffectiveWidth = ({ text, width, indent, ignoreTags }) => {
+const getEffectiveWidth = ({ text, width, indent = 0, ignoreTags = false}) => {
   if (ignoreTags === false) return width - indent
   else {
     width = width - indent // adjust width
