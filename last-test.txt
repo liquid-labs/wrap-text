@@ -1,0 +1,15 @@
+PASS test-staging/test/wrap.test.js
+PASS test-staging/test/get-effective-width.test.js
+-------------------------|---------|----------|---------|---------|-------------------
+File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------------|---------|----------|---------|---------|-------------------
+All files                |   89.62 |    79.06 |     100 |   88.76 |                   
+ get-effective-width.mjs |   82.35 |    82.35 |     100 |   77.77 | 23-25,38-40       
+ wrap.mjs                |   93.05 |    78.26 |     100 |   93.54 | 33,46-47,119      
+-------------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 2 passed, 2 total
+Tests:       37 passed, 37 total
+Snapshots:   0 total
+Time:        0.235 s, estimated 1 s
+Ran all test suites matching /.\/test-staging/i.
