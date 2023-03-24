@@ -47,6 +47,17 @@ describe('wrap', () => {
     })
   })
 
+  describe('hangin indents', () => {
+    test.each([
+      ['123 56 89', 6, 1, '123 56\n 89'],
+      ['123-56 89', 5, 1, '123-\n 56\n 89'],
+      ['123-56 89', 5, 2, '123-\n  56\n  89']
+      //['123-56 89', 5, 2, '  123-\n  56\n  89']
+    ])("Wrapping '%s' width: %i, hanging ind: %i yields '%s'", (input, width, hangingIndent, result) => {
+      expect(wrap(input, { hangingIndent, width })).toEqual(result)
+    })
+  })
+
   describe('smart indenting', () => {
     test.each([
       // smart indent active, but nothing to smart indent

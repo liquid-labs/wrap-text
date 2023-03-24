@@ -22,7 +22,7 @@ import { getEffectiveWidth } from './get-effective-width'
  * - `width` (opt): The width to wrap to. Defaults to 80.
  */
 const wrap = (text, { 
-  hangingIndent = false, 
+  hangingIndent = 0, 
   ignoreTags = false, 
   indent = 0, 
   smartIndent = false, 
@@ -58,7 +58,7 @@ const wrap = (text, {
       const effectiveIndent = !hangingIndent && !smartIndent
         ? indent
         : hangingIndent && !newPp
-          ? indent
+          ? hangingIndent
           : smartIndent && inList > 0 && !newPp
             ? inList 
             : 0
