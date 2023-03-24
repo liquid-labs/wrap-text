@@ -1,5 +1,26 @@
 import { getEffectiveWidth } from './get-effective-width'
 
+/**
+ * Wraps text to a specified width (default 80) with support for invisible tags and smart list indentation. See
+ * [project hompage](https://github.com/liquid-labs/wrap-text) for details on usage and behavior.
+ * 
+ * There are three optional indentation modes:
+ * - `indent`: indents each line a specified amount.
+ * - `hangingIndent`: indents all but the first line in a paragrph by the specified amount.
+ * - `smartIndent`: adds hanging indents for lists so the entire list item aligns under the list start
+ * 
+ * Only one indent mode may be specified. Specifying more than one results in an exception.
+ * 
+ * ## Parameters
+ * 
+ * - `hangingIndent`: (opt) The amount to indent all but the first line of a paragraph. Incompatible with other indent 
+ *   modes.
+ * - `ignoreTags`: (opt) Treat any tags ('<...>') in the text as 'invisible' and adjust wrapping accordingly.
+ * - `indent`: (opt) Indent each line by the spcified amount. Incompatible with other indent modes.
+ * - `smartIndent` (opt) Indent the list items (lines starting with /\s*[-*]/) according to the list indentation. 
+ *   Incompatbile with other indent modes.
+ * - `width` (opt): The width to wrap to. Defaults to 80.
+ */
 const wrap = (text, { 
   hangingIndent = false, 
   ignoreTags = false, 
