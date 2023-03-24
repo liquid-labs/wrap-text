@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/liquid-labs/wrap-text/issues"
   },
-  "homepage": "https://github.com/liquid-labs/wrap-text#readme"
+  "homepage": "https://github.com/liquid-labs/wrap-text#readme",
+  "dependencies": {
+    "@liquid-labs/catalyst-scripts": "^1.0.0-alpha.58"
+  }
 }

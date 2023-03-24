@@ -1,0 +1,67 @@
+PASS test-staging/test/wrap.test.js
+  wrap
+    basic wrapping
+      ✓ Wrapping '123 56 89' width: 5 yields '123
+56 89' (1 ms)
+      ✓ Wrapping '123 56 89' width: 6 yields '123 56
+89'
+      ✓ Wrapping '123 56 89' width: 7 yields '123 56
+89'
+      ✓ Wrapping '123 56 89' width: 9 yields '123 56 89'
+      ✓ Wrapping '123-56 89' width: 5 yields '123-
+56 89' (1 ms)
+      ✓ Wrapping '123-56 89' width: 6 yields '123-56
+89'
+      ✓ Wrapping '123-56 89' width: 7 yields '123-56
+89'
+      ✓ Wrapping '123-56 89' width: 9 yields '123-56 89'
+      ✓ Respect initial indent; ' 123 56 89' width: 5 yields ' 123
+56 89'
+      ✓ Respect initial indent; '  123 56 89' width: 5 yields '  123
+56 89' (1 ms)
+      ✓ Respect initial indent; '   123 56 89' width: 5 yields '   12
+3 56
+89'
+    ignore tags wrap
+      ✓ Wrapping '1<foo>23 56 89' width: 5, ind: 0 yields '1<foo>23
+56 89'
+      ✓ Wrapping '123 <foo>56 89' width: 5, ind: 0 yields '123
+<foo>56 89' (1 ms)
+      ✓ Wrapping '123 <foo>56 89' width: 4, ind: 0 yields '123
+<foo>56
+89'
+      ✓ Wrapping '123 <foo>56 89' width: 4, ind: 1 yields ' 123
+ <foo>56
+ 89'
+    constant indents
+      ✓ Wrapping '123 56 89' width: 5, ind: 1 yields ' 123
+ 56
+ 89'
+      ✓ Wrapping '123-56 89' width: 5, ind: 1 yields ' 123-
+ 56
+ 89'
+      ✓ Wrapping '123-56 89' width: 5, ind: 2 yields '  123
+  -56
+  89' (1 ms)
+    smart indenting
+      ✓ Wrapping '123 56 89' width: 5, ind: 123 yields '%s'
+      ✓ Wrapping '123 <foo>56 89' width: 5, ind: 123 yields '%s'
+      ✓ Wrapping '- 1
+- <foo>23 56 89' width: 5, ind: NaN yields '%s'
+      ✓ Wrapping '123
+- <foo>56 89' width: 4, ind: 123 yields '%s'
+      ✓ Wrapping '123
+- <foo>abcd efg
+  - a longer line' width: 8, ind: 123 yields '%s'
+
+----------|---------|----------|---------|---------|--------------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s        
+----------|---------|----------|---------|---------|--------------------------
+All files |   89.21 |    81.69 |     100 |   88.63 |                          
+ wrap.mjs |   89.21 |    81.69 |     100 |   88.63 | 23-25,38-40,57,70-71,142 
+----------|---------|----------|---------|---------|--------------------------
+Test Suites: 1 passed, 1 total
+Tests:       23 passed, 23 total
+Snapshots:   0 total
+Time:        0.319 s, estimated 1 s
+Ran all test suites matching /.\/test-staging/i.
