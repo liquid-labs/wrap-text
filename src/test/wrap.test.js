@@ -41,7 +41,7 @@ describe('wrap', () => {
       ['123 56 89', 5, 1, ' 123\n 56\n 89'],
       ['123-56 89', 5, 1, ' 123-\n 56\n 89'],
       ['123-56 89', 5, 2, '  123\n  -56\n  89']
-      //['123-56 89', 5, 2, '  123-\n  56\n  89']
+      // ['123-56 89', 5, 2, '  123-\n  56\n  89']
     ])("Wrapping '%s' width: %i, ind: %i yields '%s'", (input, width, indent, result) => {
       expect(wrap(input, { indent, width })).toEqual(result)
     })
@@ -52,7 +52,7 @@ describe('wrap', () => {
       ['123 56 89', 6, 1, '123 56\n 89'],
       ['123-56 89', 5, 1, '123-\n 56\n 89'],
       ['123-56 89', 5, 2, '123-\n  56\n  89']
-      //['123-56 89', 5, 2, '  123-\n  56\n  89']
+      // ['123-56 89', 5, 2, '  123-\n  56\n  89']
     ])("Wrapping '%s' width: %i, hanging ind: %i yields '%s'", (input, width, hangingIndent, result) => {
       expect(wrap(input, { hangingIndent, width })).toEqual(result)
     })
@@ -67,7 +67,7 @@ describe('wrap', () => {
       ['123\n- <foo>56 89', 4, '123\n- <foo>56\n  89'],
       ['123\n- <foo>abcd efg\n  - a longer line', 8, '123\n- <foo>abcd\n  efg\n  - a\n    long\n    er\n    line']
     ])("Wrapping '%s' width: %i, ind: %i yields '%s'", (input, width, result) => {
-      expect(wrap(input, { ignoreTags : true, smartIndent: true, width })).toEqual(result)
+      expect(wrap(input, { ignoreTags : true, smartIndent : true, width })).toEqual(result)
     })
   })
 })

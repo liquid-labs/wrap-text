@@ -3,30 +3,30 @@ import { getEffectiveWidth } from './get-effective-width'
 /**
  * Wraps text to a specified width (default 80) with support for invisible tags and smart list indentation. See
  * [project hompage](https://github.com/liquid-labs/wrap-text) for details on usage and behavior.
- * 
+ *
  * There are three optional indentation modes:
  * - `indent`: indents each line a specified amount.
  * - `hangingIndent`: indents all but the first line in a paragrph by the specified amount.
  * - `smartIndent`: adds hanging indents for lists so the entire list item aligns under the list start
- * 
+ *
  * Only one indent mode may be specified. Specifying more than one results in an exception.
- * 
+ *
  * ## Parameters
- * 
- * - `hangingIndent`: (opt) The amount to indent all but the first line of a paragraph. Incompatible with other indent 
+ *
+ * - `hangingIndent`: (opt) The amount to indent all but the first line of a paragraph. Incompatible with other indent
  *   modes.
  * - `ignoreTags`: (opt) Treat any tags ('<...>') in the text as 'invisible' and adjust wrapping accordingly.
  * - `indent`: (opt) Indent each line by the spcified amount. Incompatible with other indent modes.
- * - `smartIndent` (opt) Indent the list items (lines starting with /\s*[-*]/) according to the list indentation. 
+ * - `smartIndent` (opt) Indent the list items (lines starting with /\s*[-*]/) according to the list indentation.
  *   Incompatbile with other indent modes.
  * - `width` (opt): The width to wrap to. Defaults to 80.
  */
-const wrap = (text, { 
-  hangingIndent = 0, 
-  ignoreTags = false, 
-  indent = 0, 
-  smartIndent = false, 
-  width = 80 
+const wrap = (text, {
+  hangingIndent = 0,
+  ignoreTags = false,
+  indent = 0,
+  smartIndent = false,
+  width = 80
 } = {}) => {
   const indentModesActive = (hangingIndent === true ? 1 : 0) + (indent > 0 ? 1 : 0) + (smartIndent === true ? 1 : 0)
   if (indentModesActive > 1) {
@@ -51,7 +51,7 @@ const wrap = (text, {
       inList = iLine.replace(/^( *- +).*/, '$1').length
     }
 
-    // new we process the rest ef the line; there are multiple exit or re-loop points, where we set the 'newPp' false 
+    // new we process the rest ef the line; there are multiple exit or re-loop points, where we set the 'newPp' false
     // indicating that we're no longer at the front of the line.
     while (iLine.length > 0) { // usually we 'break' the flow, but this could happen if we trim the text exactly.
       // determine how many spaces to add before the current line
@@ -60,7 +60,7 @@ const wrap = (text, {
         : hangingIndent && !newPp
           ? hangingIndent
           : smartIndent && inList > 0 && !newPp
-            ? inList 
+            ? inList
             : 0
       const ew = getEffectiveWidth({ text : iLine, width, indent : effectiveIndent, ignoreTags })
       const spcs = ' '.repeat(effectiveIndent)
@@ -110,7 +110,7 @@ const wrap = (text, {
           iDash += 1
         }
       }
-      
+
       let i = Math.max(iSpace, iDash)
       if (i === -1 || i > ew) { // there's no ' '/'-' or it's past our effective width so we force a hard break.
         i = ew
