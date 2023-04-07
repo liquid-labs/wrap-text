@@ -1,6 +1,6 @@
 {
   "name": "@liquid-labs/wrap-text",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "",
   "main": "dist/wrap-text.js",
   "scripts": {
