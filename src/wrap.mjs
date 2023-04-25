@@ -46,9 +46,9 @@ const wrap = (text, {
       lines.push('')
       continue
     } // then we checke if we're in a list
-    else if (iLine.match(/^ *[-*] +/)) {
+    else if (iLine.match(/^ *[*-] +/)) {
       // count the depth of indentation (sub-lists)
-      inList = iLine.replace(/^( *- +).*/, '$1').length
+      inList = iLine.replace(/^( *[*-] +).*/, '$1').length
     }
 
     // new we process the rest ef the line; there are multiple exit or re-loop points, where we set the 'newPp' false
