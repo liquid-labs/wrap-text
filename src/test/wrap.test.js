@@ -64,7 +64,9 @@ describe('wrap', () => {
       ['123 56 89', 5, '123\n56 89'],
       ['123 <foo>56 89', 5, '123\n<foo>56 89'],
       ['- 1\n- <foo>23 56 89', 5, '- 1\n- <foo>23\n  56\n  89'],
+      ['* 1\n* <foo>23 56 89', 5, '* 1\n* <foo>23\n  56\n  89'],
       ['123\n- <foo>56 89', 4, '123\n- <foo>56\n  89'],
+      ['123\n* <foo>56 89', 4, '123\n* <foo>56\n  89'],
       ['123\n- <foo>abcd efg\n  - a longer line', 8, '123\n- <foo>abcd\n  efg\n  - a\n    long\n    er\n    line']
     ])("Wrapping '%s' width: %i, ind: %i yields '%s'", (input, width, result) => {
       expect(wrap(input, { ignoreTags : true, smartIndent : true, width })).toEqual(result)
