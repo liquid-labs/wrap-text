@@ -21,7 +21,7 @@ describe('wrap', () => {
         const input = '123-56 89'
         const expectedOut = '123-\n56 89'
         process.stdout.columns = 5
-        expect(wrap(input, { width: 20 })).toBe(expectedOut)
+        expect(wrap(input, { width : 20 })).toBe(expectedOut)
       }
       finally {
         process.stdout.columns = undefined
