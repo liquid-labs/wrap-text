@@ -16,6 +16,18 @@ describe('wrap', () => {
       expect(wrap(input, { width })).toEqual(result)
     })
 
+    test('respects console width', () => {
+      try {
+        const input = '123-56 89'
+        const expectedOut = '123-\n56 89'
+        process.stdout.columns = 5
+        expect(wrap(input, { width : 20 })).toBe(expectedOut)
+      }
+      finally {
+        process.stdout.columns = undefined
+      }
+    })
+
     test.each([
       [' 123 56 89', 5, ' 123\n56 89'],
       ['  123 56 89', 5, '  123\n56 89'],
