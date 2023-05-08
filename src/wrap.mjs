@@ -1,3 +1,4 @@
+import { getBaseWidth } from './get-base-width'
 import { getEffectiveWidth } from './get-effective-width'
 
 /**
@@ -26,7 +27,7 @@ const wrap = (text, {
   ignoreTags = false,
   indent = 0,
   smartIndent = false,
-  width = 80
+  width
 } = {}) => {
   const indentModesActive = (hangingIndent === true ? 1 : 0) + (indent > 0 ? 1 : 0) + (smartIndent === true ? 1 : 0)
   if (indentModesActive > 1) {
@@ -34,7 +35,8 @@ const wrap = (text, {
   }
 
   if (!text) return ''
-  // text = text.replace(/\s+$/, '') // we'll trim the front inside the while loop
+  
+  width = getBaseWidth(width)
 
   const lines = []
 
