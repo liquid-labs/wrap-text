@@ -1,0 +1,18 @@
+Test git rev: 5b973e66bff87420fe5b72362b724892427e790e
+PASS test/wrap.test.js
+PASS test/get-effective-width.test.js
+PASS test/get-base-width.test.js
+-------------------------|---------|----------|---------|---------|-------------------
+File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------------|---------|----------|---------|---------|-------------------
+All files                |   90.75 |    81.25 |     100 |   90.19 |                   
+ get-base-width.mjs      |     100 |    91.66 |     100 |     100 | 10                
+ get-effective-width.mjs |   82.35 |    82.35 |     100 |   77.77 | 23-25,38-40       
+ wrap.mjs                |   93.15 |     79.1 |     100 |   93.75 | 34,48-49,121      
+-------------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 3 passed, 3 total
+Tests:       47 passed, 47 total
+Snapshots:   0 total
+Time:        0.319 s, estimated 1 s
+Ran all test suites.
