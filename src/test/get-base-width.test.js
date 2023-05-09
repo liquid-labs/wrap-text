@@ -8,7 +8,8 @@ describe('getEffectiveWidth', () => {
     [60, undefined, 60],
     [100, 60, 60],
     [60, 100, 60],
-    [60, 60, 60]
+    [60, 60, 60],
+    [0, 120, 120]
   ])('requested width %s, console width %s => %s', (requestedWidth, consoleWidth, expectedWidth) => {
     process.stdout.columns = consoleWidth
     expect(getBaseWidth(requestedWidth)).toBe(expectedWidth)
