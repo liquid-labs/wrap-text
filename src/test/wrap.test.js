@@ -84,4 +84,14 @@ describe('wrap', () => {
       expect(wrap(input, { ignoreTags : true, smartIndent : true, width })).toEqual(result)
     })
   })
+
+  describe('prefixing (with smart indenting)', () => {
+    test.each([
+      ['123 56 89', 5, '# ', '# 123\n# 56 89'],
+      ['123 <foo>56 89', 5, '// ', '// 123\n// <foo>56 89'],
+      ['- 1\n- <foo>23 56 89', 5, '# ', '# - 1\n# - <foo>23\n#   56\n#   89'],
+      ['* 1\n* <foo>23 56 89', 5, '# ', '# * 1\n# * <foo>23\n#   56\n#   89']
+    ])("Wrapping '%s' width: %i, ind: %i, prefix: %s yields: '%s'", (input, width, prefix, result) =>
+      expect(wrap(input, { ignoreTags : true, prefix, smartIndent : true, width })).toEqual(result))
+  })
 })
