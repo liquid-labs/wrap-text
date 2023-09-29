@@ -18,6 +18,9 @@ import { getEffectiveWidth } from './get-effective-width'
  *   modes.
  * - `ignoreTags`: (opt) Treat any tags ('<...>') in the text as 'invisible' and adjust wrapping accordingly.
  * - `indent`: (opt) Indent each line by the spcified amount. Incompatible with other indent modes.
+ * - `prefix`: (opt) Prefixes each wrapped line with the indicated prefix. Note this happens after the lines are wrapped
+ *   according to 'width'. If you need the line to be a specific width in total, you must subtract the length of the
+ *   indent yourself.
  * - `smartIndent` (opt) Indent the list items (lines starting with /\s*[-*]/) according to the list indentation.
  *   Incompatbile with other indent modes.
  * - `width` (opt): The width to wrap to. Defaults to 80.
@@ -26,6 +29,7 @@ const wrap = (text, {
   hangingIndent = 0,
   ignoreTags = false,
   indent = 0,
+  prefix,
   smartIndent = false,
   width
 } = {}) => {
@@ -128,6 +132,12 @@ const wrap = (text, {
       newPp = false
     } // while input line
   } // for each input line
+
+  if (prefix !== undefined) {
+    lines.forEach((line, i, arr) => {
+      arr[i] = prefix + line
+    })
+  }
 
   return lines.join('\n')
 }
