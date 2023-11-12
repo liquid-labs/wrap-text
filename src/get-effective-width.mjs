@@ -10,7 +10,7 @@ const getEffectiveWidth = ({ text, width, indent = 0, ignoreTags = false }) => {
     let tagChars = 0
     let sawLtAt = -1
     let cursor = 0
-    //         v have we run out of text?         v once we've counted width chars, we're done
+    //                   v have we run out of text?         v once we've counted width chars, we're done
     for (; cursor < text.length && charCount < width; cursor += 1) {
       const char = text.charAt(cursor)
       if (sawLtAt > -1) { // maybe in a tag

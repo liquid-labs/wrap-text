@@ -40,6 +40,10 @@ const wrap = (text, {
 
   if (!text) return ''
 
+  if (width === -1) {
+    return text
+  }
+
   width = getBaseWidth(width)
 
   const lines = []
