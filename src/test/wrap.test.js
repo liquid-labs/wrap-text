@@ -2,6 +2,11 @@
 import { wrap } from '../wrap'
 
 describe('wrap', () => {
+  test('width=-1 -> no wrap', () => {
+    const text ='abcd1234'.repeat(20)
+    expect(wrap(text, { width : -1 })).toBe(text)
+  })
+
   describe('basic wrapping', () => {
     test.each([
       ['123 56 89', 5, '123\n56 89'],
