@@ -3,7 +3,7 @@ import { wrap } from '../wrap'
 
 describe('wrap', () => {
   test('width=-1 -> no wrap', () => {
-    const text ='abcd1234'.repeat(20)
+    const text = 'abcd1234'.repeat(20)
     expect(wrap(text, { width : -1 })).toBe(text)
   })
 
@@ -56,7 +56,7 @@ describe('wrap', () => {
   describe('wraps tag chars correctly when no tag actually present', () => {
     test.each([
       ['1<foo23 56 89', 5, 0, '1<foo\n23 56\n89'],
-      ['1 < foo23 56 > 89', 5, 0, '1 <\nfoo23\n56 >\n89'],
+      ['1 < foo23 56 > 89', 5, 0, '1 <\nfoo23\n56 >\n89']
     ])("Wrapping '%s' width: %i, ind: %i yields '%s'", (input, width, indent, result) => {
       expect(wrap(input, { indent, ignoreTags : true, width })).toEqual(result)
     })
