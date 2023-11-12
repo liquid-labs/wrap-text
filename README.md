@@ -47,10 +47,13 @@ Hey! Here's some <i>text</i> with
 __Tag ignoring wrapping__: `wrap(text, { ignoreTags: true,  width: 40 })` yields:
 ```
 0        1            2                 3              4
-12345678901234567   8901    234567    8901     234567890
-Hey! Here's some <i>text</i> with <em>tags</em>
+12345678901234567   8901     234567    8901     234567890
+Hey! Here's some <i>text<rst> with <em>tags<rst>
 embedded in it.
 ```
+
+- Tags are simple and cannot contain any spaces. I.e., these are not full HTML/XML tags.
+- The tags wrapping is meant to be compitible with [@liquid-labs/terminal-text](https://github.com/liquid-labs/terminal-text).
 
 Given text:
 ```
