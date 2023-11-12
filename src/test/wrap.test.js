@@ -53,6 +53,15 @@ describe('wrap', () => {
     })
   })
 
+  describe('wraps tag chars correctly when no tag actually present', () => {
+    test.each([
+      ['1<foo23 56 89', 5, 0, '1<foo\n23 56\n89'],
+      ['1 < foo23 56 > 89', 5, 0, '1 <\nfoo23\n56 >\n89'],
+    ])("Wrapping '%s' width: %i, ind: %i yields '%s'", (input, width, indent, result) => {
+      expect(wrap(input, { indent, ignoreTags : true, width })).toEqual(result)
+    })
+  })
+
   describe('constant indents', () => {
     test.each([
       ['123 56 89', 5, 1, ' 123\n 56\n 89'],
