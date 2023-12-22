@@ -1,7 +1,7 @@
 {
   "name": "@liquid-labs/wrap-text",
   "version": "1.0.0-alpha.7",
-  "description": "Library and CLI to wrap text for any width with proper handling for invisible formatting and smart hanging indents.",
+  "description": "Library and CLI to wrap text for any width with handling for invisible formatting, smart list indentation, and more.",
   "main": "dist/wrap-text.js",
   "scripts": {
     "build": "make all",

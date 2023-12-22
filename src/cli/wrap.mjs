@@ -16,15 +16,27 @@ const cliSpec = {
       type        : Number
     },
     { name : 'document-title', description : 'Sets the title for generated documentation.' },
-    { name : 'hanging-indent', description : 'The amount to indent all but the first line of a paragraph. Incompatible with other indent modes.', type : Number },
+    { 
+      name : 'hanging-indent', 
+      description : 'The amount to indent all but the first line of a paragraph. Incompatible with other indent modes.',
+      type : Number 
+    },
     { name : 'ignore-tags', description : "Treat any tags ('<...>') in the text as 'invisible' and adjust wrapping accordingly." },
     { name : 'indent', description : 'Indent each line by the spcified amount. Incompatible with other indent modes.', type : Number },
     {
       name        : 'prefix',
       description : 'Prefixes each wrapped line with the indicated prefix. Note this happens after the lines are wrapped according to the specified width. If you need the line to be a specific width in total, you must subtract the length of the indent yourself.'
     },
-    { name : 'smart-indent', description : 'Ignores tags (treats as zero-width string) when wrapping.', type : Boolean },
-    { name : 'width', description : 'The width to wrap to. Defaults to 80.', type : Number }
+    { 
+      name : 'smart-indent', 
+      description : 'Ignores tags (treats as zero-width string) when wrapping.', 
+      type : Boolean 
+    },
+    { 
+      name : 'width', 
+      description : "The width to wrap to. Defaults to 80. Use '0' to default to 'process.stdout.columns' and -1 for no wrapping.", 
+      type : Number
+    }
   ]
 }
 

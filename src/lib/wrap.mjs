@@ -23,7 +23,8 @@ import { getEffectiveWidth } from './get-effective-width'
  *   indent yourself.
  * - `smartIndent` (opt) Indent the list items (lines starting with /\s*[-*]/) according to the list indentation.
  *   Incompatbile with other indent modes.
- * - `width` (opt): The width to wrap to. Defaults to 80.
+ * - `width` (opt): The width to wrap to. Defaults to 80. Use '0' to default to 'process.stdout.columns' and -1 for no 
+ *   wrapping.
  */
 const wrap = (text, {
   hangingIndent = 0,
@@ -139,7 +140,9 @@ const wrap = (text, {
 
   if (prefix !== undefined) {
     lines.forEach((line, i, arr) => {
-      arr[i] = prefix + line
+      if (i < arr.length - 1 || line.length > 0) {
+        arr[i] = prefix + line
+      }
     })
   }
 
