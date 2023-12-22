@@ -1,6 +1,6 @@
 # liquid-labs/wrap-text
 
-Wraps text for any width while respecting potentially invisible tags and smartly indenting lists.
+Library and CLI to wrap text for any width with proper handling for invisible formatting and smart hanging indents.
 
 ## Installation
 
