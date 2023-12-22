@@ -1,13 +1,15 @@
 {
   "name": "@liquid-labs/wrap-text",
   "version": "1.0.0-alpha.7",
-  "description": "",
+  "description": "Library and CLI to wrap text for any width with proper handling for invisible formatting and smart hanging indents.",
   "main": "dist/wrap-text.js",
   "scripts": {
     "build": "make all",
     "test": "make test",
     "lint": "make lint",
     "lint:fix": "make lint-fix",
+    "prepack": "make build",
+    "preversion": "make qa",
     "qa": "make qa"
   },
   "keywords": [],
@@ -26,6 +28,7 @@
   },
   "dependencies": {
     "command-line-args": "^5.2.1",
-    "command-line-documentation": "^1.0.0-alpha.1"
+    "command-line-documentation": "^1.0.0-alpha.1",
+    "printable-characters": "^1.0.42"
   }
 }

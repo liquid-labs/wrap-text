@@ -72,8 +72,6 @@ const wrap = (text, {
           : smartIndent && inList > 0 && !newPp
             ? inList
             : 0
-      const ew = getEffectiveWidth({ text : iLine, width, indent : effectiveIndent, ignoreTags })
-      const spcs = ' '.repeat(effectiveIndent)
       let initSpaces = 0
       if (newPp === false) { // trim any whitespace (like the ' ' in front of the last inserted line break)
         // unless we're at the start of a PP, in which case we want to preserve the initial indent or list indent
@@ -82,6 +80,8 @@ const wrap = (text, {
       else {
         initSpaces = iLine.replace(/^( *).*/, '$1').length
       }
+      const ew = getEffectiveWidth({ text : iLine, width, indent : effectiveIndent, ignoreTags })
+      const spcs = ' '.repeat(effectiveIndent)
 
       if (ew >= iLine.length) {
         lines.push(spcs + iLine)
