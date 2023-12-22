@@ -2,14 +2,16 @@
 
 Wraps text for any width while respecting potentially invisible tags and smartly indenting lists.
 
-## Usage
+## Installation
 
-Install:
 ```bash
 npm i @liquid-labs/wrap-text
 ```
 
-Code:
+## Usage
+
+### Library usage
+
 ```javascript
 import { wrap } from '@liquid-labs/wrap-text'
 //                      0        1         2         3         4         5         6
@@ -23,6 +25,13 @@ console.log(wrap(someTaggedText, { ignoreTags: true, width: 40 }))
 ```
 
 See [Examples](#examples) section for output.
+
+### CLI usage
+
+```bash
+cat 'some text' | wrap
+wrap a-text-file.txt
+```
 
 ## Examples
 
@@ -74,3 +83,36 @@ Now back to normal.
 ```
 
 Of course you can combine `smartIndent` with `ignoreTags`.
+
+## Reference
+
+### API reference
+
+`wrap(text, option)`: Wraps the specified text to the specified or default width.
+- `text`: The text to wrap.
+- `options.hangingIndent`: The amount to indent all but the first line of a paragraph. Incompatible with other indent modes.
+- `options.ignoreTags`: Treat any tags ('<...>') in the text as 'invisible' and adjust wrapping accordingly.
+- `options.indent`: Indent each line by the spcified amount. Incompatible with other indent modes.
+- `options.prefix`: Prefixes each wrapped line with the indicated prefix. Note this happens after the lines are wrapped according to the specified width. If you need the line to be a specific width in total, you must subtract the length of the indent yourself.
+- `options.width`: The width to wrap to. Defaults to 80.
+
+### CLI command reference
+
+#### Usage
+
+`wrap <options> <input-file>`
+
+#### Options
+
+|Option|Description|
+|------|------|
+|`<input-file>`|(_main argument_,_optional_) The file to process and wrap.|
+|`--document`|Creates documentation for self.|
+|`--document-section-depth`|Sets the initial section-depth for generated docuemnation.|
+|`--document-title`|Sets the title for generated documentation.|
+|`--hanging-indent`|The amount to indent all but the first line of a paragraph. Incompatible with other indent modes.|
+|`--ignore-tags`|Treat any tags ('<...>') in the text as 'invisible' and adjust wrapping accordingly.|
+|`--indent`|Indent each line by the spcified amount. Incompatible with other indent modes.|
+|`--prefix`|Prefixes each wrapped line with the indicated prefix. Note this happens after the lines are wrapped according to the specified width. If you need the line to be a specific width in total, you must subtract the length of the indent yourself.|
+|`--smart-indent`|Ignores tags (treats as zero-width string) when wrapping.|
+|`--width`|The width to wrap to. Defaults to 80.|
