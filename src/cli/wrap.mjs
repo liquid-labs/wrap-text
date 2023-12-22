@@ -63,11 +63,11 @@ const wrap = async ({
     }
     catch (e) {
       if (e.code === 'ENOENT') {
-        stderr.write(`Did not find input file '${inputFile}'.`)
+        stderr.write(`Did not find input file '${inputFile}'.\n`)
         return 1
       }
       else {
-        stderr.write(`Unknown error reading '${inputFile}': ` + e.message)
+        stderr.write(`Unknown error reading '${inputFile}': ` + e.message + '\n')
         return 10
       }
     }
@@ -94,7 +94,7 @@ const wrap = async ({
       return 0
     }
     catch (e) {
-      stderr.write('There was an error processing the input: ' + e.message)
+      stderr.write('There was an error processing the input: ' + e.message + '\n')
       return 10
     }
   }
