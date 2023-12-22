@@ -45,6 +45,11 @@ projects:
             purpose: Builds the 'dist/wrap-text.js' artifact.
           - builder: '@liquid-labs/sdlc-projects-workflow-local-node-build'
             version: 1.0.0-alpha.5
+            priority: 50
+            path: make/50-wrap-text-exec-js.mk
+            purpose: Builds the 'dist/wrap-text-exec.js' artifact.
+          - builder: '@liquid-labs/sdlc-projects-workflow-local-node-build'
+            version: 1.0.0-alpha.5
             priority: 55
             path: make/55-lint.mk
             purpose: Provides lint functionality with eslint.
