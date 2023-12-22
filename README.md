@@ -1,4 +1,5 @@
 # liquid-labs/wrap-text
+[![coverage: 88%](./.readme-assets/coverage.svg)](https://github.com/liquid-labs/wrap-text/pulls?q=is%3Apr+is%3Aclosed)
 
 Library and CLI to wrap text for any width with handling for invisible formatting, smart list indentation, and more.
 
