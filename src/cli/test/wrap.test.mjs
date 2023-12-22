@@ -34,7 +34,6 @@ describe('wrap', () => {
     const testDataPath = fsPath.join(__dirname, 'data', 'bad-path.txt')
     const exitCode = await wrap({ argv : [testDataPath], stderr, stdout })
     expect(exitCode).toBe(1)
-    console.log('errorout:', errout) // DEBUG
     expect(errout.startsWith('Did not find input file')).toBe(true)
     expect(output).toHaveLength(0)
   })
