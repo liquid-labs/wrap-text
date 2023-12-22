@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/liquid-labs/wrap-text#readme",
   "devDependencies": {
-    "@liquid-labs/catalyst-scripts-node-project": "^1.0.0-alpha.4"
+    "@liquid-labs/catalyst-scripts-node-project": "^1.0.0-alpha.4",
+    "@liquid-labs/sdlc-resource-babel-and-rollup": "^1.0.0-alpha.5",
+    "@liquid-labs/sdlc-resource-eslint": "^1.0.0-alpha.2",
+    "@liquid-labs/sdlc-resource-jest": "^1.0.0-alpha.5"
   }
 }
