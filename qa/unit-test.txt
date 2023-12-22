@@ -1,0 +1,29 @@
+Test git rev: f83c4a2db1a03858355740fd11ad45d72cb2d7ec
+PASS cli/test/wrap.test.js
+  ● Console
+
+    console.log
+      errorout: Did not find input file '/Users/zane/playground/liquid-labs/wrap-text/test-staging/cli/test/data/bad-path.txt'.
+
+      at log (../src/cli/test/wrap.test.mjs:37:13)
+
+PASS lib/test/wrap.test.js
+PASS lib/test/get-base-width.test.js
+PASS lib/test/get-effective-width.test.js
+--------------------------|---------|----------|---------|---------|-------------------
+File                      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------------|---------|----------|---------|---------|-------------------
+All files                 |   86.51 |    78.46 |      75 |   86.98 |                   
+ cli                      |   66.66 |    59.37 |   57.14 |   63.41 |                   
+  wrap.mjs                |   66.66 |    59.37 |   57.14 |   63.41 | 65,70-97          
+ lib                      |   95.86 |    84.69 |     100 |   96.19 |                   
+  get-base-width.mjs      |     100 |    91.66 |     100 |     100 | 10                
+  get-effective-width.mjs |     100 |      100 |     100 |     100 |                   
+  wrap.mjs                |   93.58 |    79.71 |     100 |    94.2 | 38,56-57,129      
+--------------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 4 passed, 4 total
+Tests:       59 passed, 59 total
+Snapshots:   0 total
+Time:        0.416 s, estimated 1 s
+Ran all test suites.
