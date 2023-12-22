@@ -1,6 +1,6 @@
 import { wrap } from './wrap'
 
-(async () => {
+(async() => {
   const exitCode = await wrap()
   process.exit(exitCode)
 })()
