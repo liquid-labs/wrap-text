@@ -17,7 +17,7 @@ describe('wrap', () => {
       ['123-56 89', 6, '123-56\n89'],
       ['123-56 89', 7, '123-56\n89'],
       ['123-56 89', 9, '123-56 89'],
-      ['\u001b[1mhi there my friend\u0000', 10, '\u001b[1mhi there\nmy friend\u0000'],
+      ['\u001b[1mhi there my friend\u0000', 10, '\u001b[1mhi there\nmy friend\u0000']
     ])("Wrapping '%s' width: %i yields '%s'", (input, width, result) => {
       expect(wrap(input, { width })).toEqual(result)
     })
