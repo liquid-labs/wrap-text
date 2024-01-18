@@ -1,5 +1,5 @@
 {
-  "name": "@liquid-labs/wrap-text",
+  "name": "wrap-text-plus",
   "version": "1.0.0-alpha.7",
   "description": "Library and CLI to wrap text for any width with handling for invisible formatting, smart list indentation, and more.",
   "main": "dist/wrap-text.js",
@@ -26,11 +26,14 @@
   ],
   "author": "Zane Rockenbaugh <zane@liquid-labs.com>",
   "license": "UNLICENSED",
-  "repository": "git+ssh://git@github.com/liquid-labs/wrap-text.git",
-  "bugs": {
-    "url": "https://github.com/liquid-labs/wrap-text/issues"
+  "repository": {
+    "url": "git+ssh://git@github.com/liquid-labs/wrap-text-plus.git",
+    "type": "git"
   },
-  "homepage": "https://github.com/liquid-labs/wrap-text#readme",
+  "bugs": {
+    "url": "https://github.com/liquid-labs/wrap-text-plus/issues"
+  },
+  "homepage": "https://github.com/liquid-labs/wrap-text-plus#readme",
   "devDependencies": {
     "@liquid-labs/catalyst-scripts-node-project": "^1.0.0-alpha.4",
     "@liquid-labs/sdlc-resource-babel-and-rollup": "^1.0.0-alpha.5",
@@ -39,7 +42,10 @@
   },
   "dependencies": {
     "command-line-args": "^5.2.1",
-    "command-line-documentation": "file:.yalc/command-line-documentation",
+    "command-line-documentation": "^1.0.0-alpha.3",
     "printable-characters": "^1.0.42"
+  },
+  "_comply": {
+    "orgKey": "@liquid-labs"
   }
 }
