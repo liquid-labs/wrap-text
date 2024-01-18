@@ -44,5 +44,8 @@
     "command-line-args": "^5.2.1",
     "command-line-documentation": "^1.0.0-alpha.3",
     "printable-characters": "^1.0.42"
+  },
+  "_comply": {
+    "orgKey": "@liquid-labs"
   }
 }
