@@ -12,7 +12,18 @@
     "preversion": "make qa",
     "qa": "make qa"
   },
-  "keywords": ["break", "cli", "color", "colors", "linewrap", "terminal", "wordbreak", "wordwrap", "wrap", "wrapping"],
+  "keywords": [
+    "break",
+    "cli",
+    "color",
+    "colors",
+    "linewrap",
+    "terminal",
+    "wordbreak",
+    "wordwrap",
+    "wrap",
+    "wrapping"
+  ],
   "author": "Zane Rockenbaugh <zane@liquid-labs.com>",
   "license": "UNLICENSED",
   "repository": "git+ssh://git@github.com/liquid-labs/wrap-text.git",
@@ -28,7 +39,7 @@
   },
   "dependencies": {
     "command-line-args": "^5.2.1",
-    "command-line-documentation": "^1.0.0-alpha.1",
+    "command-line-documentation": "file:.yalc/command-line-documentation",
     "printable-characters": "^1.0.42"
   }
 }
