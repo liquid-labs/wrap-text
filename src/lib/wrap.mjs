@@ -49,7 +49,7 @@ const wrap = (text, {
 
   const lines = []
 
-  for (let iLine of text.split('\n')) {
+  for (let iLine of text.split('\n').map((line) => line.trimEnd())) {
     let newPp = true
     let inList = 0
     // at the start of each paragraph, we check if we have an empty line
@@ -144,6 +144,12 @@ const wrap = (text, {
         arr[i] = prefix + line
       }
     })
+  }
+
+  // TODO: not sure how, but we're getting extraneous newlines at the end of some lines; discovered while working with 
+  // 'command-line-help'
+  while (lines[lines.length - 1].trim() === '') {
+    lines.pop()
   }
 
   return lines.join('\n')
