@@ -146,12 +146,6 @@ const wrap = (text, {
     })
   }
 
-  // TODO: not sure how, but we're getting extraneous newlines at the end of some lines; discovered while working with
-  // 'command-line-help'
-  while (lines[lines.length - 1].trim() === '') {
-    lines.pop()
-  }
-
   return lines.join('\n')
 }
 
