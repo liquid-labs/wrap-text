@@ -27,6 +27,7 @@ import { getEffectiveWidth } from './get-effective-width'
  *   wrapping.
  */
 const wrap = (text, {
+  allowOverflow = false,
   hangingIndent = 0,
   ignoreTags = false,
   indent = 0,
@@ -123,7 +124,36 @@ const wrap = (text, {
       }
 
       let i = Math.max(iSpace, iDash)
-      if (i === -1 || i > ew) { // there's no ' '/'-' or it's past our effective width so we force a hard break.
+      if (i === -1 && allowOverflow === true) {
+        // this works because if there is no ' ' (etc), then we get -1, so + 1 === 0 and defaults to line length
+        const spaceI = iLine.indexOf(' ')
+        const dashI = iLine.indexOf('-')
+        const slashI = iLine.indexOf('/')
+        const breakPoint = [spaceI, dashI, slashI].reduce((acc, i) => {
+          if (i === -1) {
+            return acc
+          }
+          if (acc === -1) {
+            return i
+          }
+          else if (i < acc) {
+            return i
+          }
+          return acc
+        }, -1)
+        if (breakPoint !== -1) {
+          if (breakPoint === spaceI) {
+            i = breakPoint
+          }
+          else {
+            i = breakPoint + 1
+          }
+        }
+        else {
+          i = iLine.length
+        }
+      }
+      else if (i === -1 || i > ew) { // there's no ' '/'-' or it's past our effective width so we force a hard break
         i = ew
       }
       if (i > iLine.length) {

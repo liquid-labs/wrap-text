@@ -9,6 +9,11 @@ const cliSpec = {
   mainCommand : 'wrap',
   mainOptions : [
     { name : 'input-file', defaultOption : true, description : 'The file to process and wrap.' },
+    {
+      name        : 'allow-overflow',
+      description : 'Does not break words with no spaces. Note, these words may still wrap due to the terminal column limit.',
+      type        : Boolean
+    },
     { name : 'document', description : 'Creates documentation for self.', type : Boolean },
     {
       name        : 'document-section-depth',
@@ -48,11 +53,17 @@ const wrap = async({
 } = {}) => {
   const options = commandLineArgs(cliSpec.mainOptions, { argv })
 
-  const inputFile = options['input-file']
-  const hangingIndent = options['hanging-indent']
-  const ignoreTags = options['ignore-tags']
-  const smartIndent = options['smart-indent']
-  const { document: doDocument, indent, prefix, width } = options
+  const {
+    'allow-overflow': allowOverflow,
+    document: doDocument,
+    'hanging-indent': hangingIndent,
+    'ignore-tags': ignoreTags,
+    indent,
+    'input-file': inputFile,
+    prefix,
+    'smart-indent': smartIndent,
+    width
+  } = options
 
   if (doDocument === true) {
     const sectionDepth = options['document-section-depth']
@@ -64,7 +75,7 @@ const wrap = async({
     return 0
   }
 
-  const wrapOptions = { hangingIndent, ignoreTags, indent, prefix, smartIndent, width }
+  const wrapOptions = { allowOverflow, hangingIndent, ignoreTags, indent, prefix, smartIndent, width }
 
   if (inputFile !== undefined) {
     try {
