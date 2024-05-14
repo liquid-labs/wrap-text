@@ -2,6 +2,16 @@
 import { wrap } from '../wrap'
 
 describe('wrap', () => {
+  describe('options processing', () => {
+    test.each([
+      [true, true, false],
+      [true, false, true],
+      [false, true, true]
+    ])('throws error if multiple indent modes active', (hangingIndent, indent, smartIndent) => {
+      expect(() => wrap('hi', { hangingIndent, indent, smartIndent })).toThrow(/Multiple indent/)
+    })
+  })
+
   test('width=-1 -> no wrap', () => {
     const text = 'abcd1234'.repeat(20)
     expect(wrap(text, { width : -1 })).toBe(text)
@@ -108,5 +118,19 @@ describe('wrap', () => {
       ['* 1\n* <foo>23 56 89', 5, '# ', '# * 1\n# * <foo>23\n#   56\n#   89']
     ])("Wrapping '%s' width: %i, ind: %i, prefix: %s yields: '%s'", (input, width, prefix, result) =>
       expect(wrap(input, { ignoreTags : true, prefix, smartIndent : true, width })).toEqual(result))
+  })
+
+  describe('allows long lines', () => {
+    test.each([
+      ['1234567890', 5, '1234567890'],
+      ['123 56789012', 5, '123\n56789012'],
+      ['123 56789012 456', 5, '123\n56789012\n456']
+    ])("Wrapping %s width %i with 'allowOverflow' yields '%s'", (input, width, expected) => {
+      expect(wrap(input, { allowOverflow : true, width })).toBe(expected)
+    })
+  })
+
+  test('respects paragraph breaks', () => {
+    expect(wrap('1234\n\n5678', { width : 5 })).toBe('1234\n\n5678')
   })
 })

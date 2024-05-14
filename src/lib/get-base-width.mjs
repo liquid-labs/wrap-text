@@ -7,7 +7,7 @@ const getBaseWidth = (requestedWidth) => {
     return requestedWidth || DEFAULT_WIDTH
   }
   else if (requestedWidth === undefined) {
-    return consoleWidth || DEFAULT_WIDTH
+    return consoleWidth // console width must be defined
   }
   else if (requestedWidth === 0 || consoleWidth < requestedWidth) {
     return consoleWidth
