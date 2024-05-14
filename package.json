@@ -1,6 +1,6 @@
 {
   "name": "wrap-text-plus",
-  "version": "1.0.0-alpha.11",
+  "version": "1.0.0-alpha.12",
   "description": "Library and CLI to wrap text for any width with handling for invisible formatting, smart list indentation, and more.",
   "main": "dist/wrap-text.js",
   "scripts": {
