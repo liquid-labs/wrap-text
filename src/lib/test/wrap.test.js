@@ -124,7 +124,9 @@ describe('wrap', () => {
     test.each([
       ['1234567890', 5, '1234567890'],
       ['123 56789012', 5, '123\n56789012'],
-      ['123 56789012 456', 5, '123\n56789012\n456']
+      ['123 56789012 456', 5, '123\n56789012\n456'],
+      ['  345 78901234 678', 5, '  345\n78901234\n678'],
+      ['  3456 89012345 678', 5, '  3456\n89012345\n678']
     ])("Wrapping %s width %i with 'allowOverflow' yields '%s'", (input, width, expected) => {
       expect(wrap(input, { allowOverflow : true, width })).toBe(expected)
     })
@@ -132,5 +134,13 @@ describe('wrap', () => {
 
   test('respects paragraph breaks', () => {
     expect(wrap('1234\n\n5678', { width : 5 })).toBe('1234\n\n5678')
+  })
+
+  test('break spaces only', () => {
+    expect(wrap('123-567 90123', { breakSpacesOnly : true, width : 5 })).toBe('123-5\n67\n90123')
+  })
+
+  test("'breakCharactersOnly' can break on any character", () => {
+    expect(wrap('1234a678', { breakCharacters : ['a'], width : 5 })).toBe('1234a\n678')
   })
 })
