@@ -13,7 +13,10 @@ import { getEffectiveWidth } from './get-effective-width'
  * Only one indent mode may be specified. Specifying more than one results in an exception.
  *
  * ## Parameters
- *
+ * - `allowOverflow`: (opt)  Indicates that long sequences of characters with no break characters should be allowed to
+ *    overflow the width. They may still, of course, be wrapped by the terminal.
+ * - `breakCharacters`: (opt) Specify the characters to break on. (Can be strings, actually.) Defaults to ' ', '-', '/'.
+ * - `breakSpacesOnly: (opt) Sets ' ' as the only break character.`
  * - `hangingIndent`: (opt) The amount to indent all but the first line of a paragraph. Incompatible with other indent
  *   modes.
  * - `ignoreTags`: (opt) Treat any tags ('<...>') in the text as 'invisible' and adjust wrapping accordingly.
@@ -28,6 +31,8 @@ import { getEffectiveWidth } from './get-effective-width'
  */
 const wrap = (text, {
   allowOverflow = false,
+  breakCharacters = [' ', '-', '/'],
+  breakSpacesOnly = false,
   hangingIndent = 0,
   ignoreTags = false,
   indent = 0,
@@ -44,6 +49,10 @@ const wrap = (text, {
 
   if (width === -1) {
     return text
+  }
+
+  if (breakSpacesOnly === true) {
+    breakCharacters = [' ']
   }
 
   width = getBaseWidth(width)
@@ -88,81 +97,58 @@ const wrap = (text, {
       if (ew >= iLine.length) {
         lines.push(spcs + iLine)
         newPp = false
-        // lines.push('a23456790' + '123456790'.repeat(7))
         break // we're done
-      }
-      else if (iLine.charAt(ew) === ' ') {
-        lines.push(spcs + iLine.slice(0, ew))
-        iLine = iLine.slice(ew)
-        newPp = false
-        // lines.push('b23456790' + '123456790'.repeat(7))
-        continue
-      }
-      else if (iLine.charAt(ew - 1) === '-') {
-        lines.push(spcs + iLine.slice(0, ew))
-        iLine = iLine.slice(ew)
-        newPp = false
-        // lines.push('c23456790' + '123456790'.repeat(7))
-        continue
-      }
-
+      }/*
+      else { // check if we effectively end at a break character TODO: do we need this with the new logic below?
+        if (breakCharacters.includes(' ') && iLine.charAt(ew) === ' ') {
+          lines.push(spcs + iLine.slice(0, ew))
+          iLine = iLine.slice(ew)
+          newPp = false
+          continue
+        } // else, check the other break characters
+        for (const breakChar of breakCharacters.filter((c) => c !== ' ')) {
+          if (iLine.charAt(ew - 1) === breakChar) {
+            lines.push(spcs + iLine.slice(0, ew - 1))
+            iLine = iLine.slice(ew - 1)
+            newPp = false
+            continue
+          }
+        }
+      } */
+      // then we have a break point not at the end of the current line
       // what's the last index of our break points within the effective width range?
-      let iSpace = iLine.lastIndexOf(' ', ew)
-      if (iSpace > -1 && newPp === true && initSpaces >= iSpace) {
-        // if we're new PP, we want to preserve the initial indent and not break on spaces within
-        iSpace = -1
-      }
+      let [breakPoint, breakChar] = breakCharacters.reduce((acc, breakChar) => {
+        const breakPoint = iLine.lastIndexOf(breakChar, ew)
+        const lastBreak = acc[0]
 
-      let iDash = iLine.lastIndexOf('-', ew)
-      if (iDash > -1) {
-        if (inList && iDash <= inList) { // if we find the '-' at the head of the list, we reset the iDash
-          iDash = -1
-        }
-        else { // we want to keep the dash, so we push our break point out by one
-          iDash += 1
-        }
-      }
+        if (breakPoint > lastBreak && !(breakChar === ' ' && breakPoint + 1 === initSpaces)) {
+          return [breakPoint, breakChar]
+        } // else
+        return acc
+      }, [-1, undefined])
+      // note, because we look for lastIndexOf less than ew, breakpoint can't be greater than ew
+      if (allowOverflow === true && breakPoint === -1) {
+        ([breakPoint, breakChar] = breakCharacters.reduce((acc, breakChar) => {
+          const testAfter = breakChar === ' ' ? initSpaces : 0
+          const breakPoint = iLine.indexOf(breakChar, testAfter)
+          const lastBreak = acc[0]
 
-      let i = Math.max(iSpace, iDash)
-      if (i === -1 && allowOverflow === true) {
-        // this works because if there is no ' ' (etc), then we get -1, so + 1 === 0 and defaults to line length
-        const spaceI = iLine.indexOf(' ')
-        const dashI = iLine.indexOf('-')
-        const slashI = iLine.indexOf('/')
-        const breakPoint = [spaceI, dashI, slashI].reduce((acc, i) => {
-          if (i === -1) {
-            return acc
-          }
-          if (acc === -1) {
-            return i
-          }
-          else if (i < acc) {
-            return i
-          }
+          if ((breakPoint !== -1 && breakPoint < lastBreak)) {
+            return [breakPoint, breakChar]
+          } // else
           return acc
-        }, -1)
-        if (breakPoint !== -1) {
-          if (breakPoint === spaceI) {
-            i = breakPoint
-          }
-          else {
-            i = breakPoint + 1
-          }
-        }
-        else {
-          i = iLine.length
-        }
+        }, [iLine.length, undefined]))
       }
-      else if (i === -1 || i > ew) { // there's no ' '/'-' or it's past our effective width so we force a hard break
-        i = ew
-      }
-      if (i > iLine.length) {
-        i = iLine.length
+      else if (breakPoint === -1) { // and !allowOveflow
+        breakPoint = ew
       }
 
-      lines.push(spcs + iLine.slice(0, i))
-      // lines.push('d23456790' + '123456790'.repeat(7))
-      iLine = iLine.slice(i)
+      if (breakChar !== ' ' && breakChar !== undefined && (allowOverflow === false && breakPoint !== ew)) {
+        breakPoint += 1
+      }
+
+      lines.push(spcs + iLine.slice(0, breakPoint))
+      iLine = iLine.slice(breakPoint)
 
       newPp = false
     } // while input line
